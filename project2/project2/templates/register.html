@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block css  %}
+
+    #l{
+        color: red;
+        font-size: medium;
+        font-family: 'Times New Roman', Times, serif;
+        background-color: black;
+        
+    }
+    #f{
+        color: black;
+        font-size: medium;
+        text-decoration: double;
+        background-color: red;
+    }
+
+
+{% endblock  %}
+{% block body  %}
+<form action="" method="post"> 
+    {%csrf_token%}
+    {% comment  %}{{ form.as_p}}{% endcomment %}
+   <table>
+    {% for field in form %}
+    <tr>
+        <td id="l"> {{field.label}}</td>
+        <td id="f">   {{field}}</td>
+    </tr>
+   
+
+
+ 
+    
+    
+    
+    {% endfor %}
+</table>
+
+    
+
+
+<input type="submit" value="Register" name="register" >
+</form>
+
+{% endblock  %}

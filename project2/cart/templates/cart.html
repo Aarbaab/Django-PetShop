@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load customfilter %}
+{% block body %}
+<h3>Your Cart</h3>
+{% for i in items %}
+{% include "cartpro.html" with product=i.pro_id %}
+
+<h1>Quantity={{i.Quantity}} </h1>
+
+<form action="{% url 'UpdateCart' cartItemId=i.id %}"> 
+    <button type="button" onclick="updateQuantity('{{i.id}}',-1)">-</button>
+    <input type="number" name="quantity" id="quantity-{{i.id}}" value="{{i.Quantity}}">
+    <button type="button" onclick="updateQuantity('{{i.id}}',1)">+</button>
+    <br>
+    <button type="submit" class="btn btn-dark">UPDATE </button>
+  </form>
+  <br>
+  <button type="submit" class="btn btn-dark"><a href="{% url 'DeleteCart' cartItemId=i.id  %}">Remove from Cart </a> </button>
+
+  <script>
+    function updateQuantity(productid,operation)
+    {
+      var quantityInput=document.getElementById("quantity-"+productid);
+      value=quantityInput.value;
+      var quantityValue=parseInt(value);
+      var newquantityValue=quantityValue+operation;
+      quantityInput.value=newquantityValue;
+
+
+    }
+  </script>
+
+{% endfor %}
+<table border="1px" cellpadding="30">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Amount</th>
+  </tr>
+{% for p in items  %}  
+<tr>
+  <th>{{p.pro_id.id}}</th>
+  <th>{{p.pro_id.Pro_name}}</th>
+  <th>{{p.Quantity}}</th>
+  <th>{{p.pro_id.Pro_price}}</th>
+  <th>{{p.pro_id.Pro_price|multiply:p.Quantity}}</th>
+</tr>
+{% endfor %}
+<tr><td colspan="6"><h1>The Total Amount is:-  {{finalamount}} <br> <a href="{% url "Checkout" %}"> <button type="button" class="btn btn-dark">CHECKOUT </button> </a> </h1></td></tr>
+
+</table>
+
+
+{% endblock %}

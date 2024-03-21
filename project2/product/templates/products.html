@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p{
+            color: aqua;
+            text-align: center;
+            display: inline-block;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-right: 150px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+         
+        }
+        #b{
+            background-color:black;
+            color: aqua;
+            text-align: center;
+        }
+    </style>
+    {%include 'links.html'%}
+</head>
+<body id="b">
+    {%include 'nav.html'%}
+    <h1>Product List</h1>
+    <h2>{{request.session.currentuser}}</h2>
+    {%for product in object_list%}
+    <div class="p">
+        {%include 'productcard.html'%} 
+        <a href="{% url 'DetailPro' product.id %}"><li style="color: red;">Detailed View</li></a>
+     {% comment %}
+    <ul>
+        
+    {%include 'productcard.html'%} 
+    <img src="{{product.Pro_image.url}}" alt="">
+    <li>{{product.Pro_name}}</li>
+    <li>{{product.Pro_desc}}</li>
+    <li>{{product.Pro_price}}</li>
+    <li>{{product.Pro_brand}}</li>  
+        <a href="{% url 'DetailPro' product.id %}"><li style="color: red;">Detailed View</li></a>
+    </ul>{% endcomment %}
+</div>
+
+    {%endfor%}
+   
+
+  
+    
+</body>
+</html>

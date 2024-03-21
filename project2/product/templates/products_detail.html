@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p{
+            color: aqua;
+            text-align: center;
+            display: inline-block;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-right: 150px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 160px;
+        }
+        #b{
+            background-color:black;
+            color: aqua;
+            text-align: center;
+        }
+    </style>
+    {%include 'links.html'%}
+</head>
+<body id="b">
+    {%include 'nav.html'%}
+   <h1> Detailed view</h1>
+   <div class="p">
+    <ul>
+        <li><img src="{{p.Pro_image.url}}" alt=""></li>
+        <li>{{p.Pro_name}}</li>
+        <li>{{p.Pro_desc}}</li>
+        <br>
+        <a href=" {% url 'products' %} "><li style="color: red;">Go Back</li></a>
+    </ul>
+</div>
+</body>
+</html>

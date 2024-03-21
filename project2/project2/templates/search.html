@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{%block title%}Search page{% endblock %}
+{%block css%}
+
+    .p{
+        background-color: aqua;
+        color: red;
+    }
+
+
+{%endblock%}
+
+{%block body%}
+
+<h1 class="p">Search results</h1>
+{% for obj in products %}
+             
+            {% include "productcard.html" with product=obj %}
+
+{% endfor %}
+
+
+{%endblock%}

@@ -1,0 +1,54 @@
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{product.Pro_image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if decision  %}
+          <h5 class="card-title" style="color: red;">{{product.Pro_name|upper}}</h5>
+          {% elif last %}
+          <h5 class="card-title" style="border: 5px solid red;color: aqua;">{{product.Pro_name|upper}}</h5>
+          {%else%}  
+          <h5 class="card-title">{{product.Pro_name|upper}}</h5> 
+          {% endif %}
+        
+
+          <h5 class="card-title">{{product.Pro_name|upper}}</h5>
+          <p class="card-text"><b>{{product.Pro_desc|first|upper}}</b>{{product.Pro_desc|slice:'1:'|lower}}</p>
+          <p class="card-text">{{product.Pro_price|floatformat:3}}</p>
+          <p class="card-text"><small class="text-muted">{{product.Pro_brand}}</small></p>
+             {% comment "" %}
+          <p class="card-text">Danial {{"Danials"|length}}</p>
+          <p class="card-text">Danial {{"Danials"|length_is:6}}</p>
+          <p class="card-text">{{"Danials "|add:'Hello'}}</p>
+          <p class="card-text">Danial {{"10"|add:6}}</p>
+          <p class="card-text">Danial {{"Danials"|cut:"a"}}</p>
+          <p class="card-text"><small class="text-muted">{{product.Pro_brand|length}}</small></p>
+            This is comment tag in django
+          {% endcomment %}
+          <form action="{% url 'addtocart' productid=product.id %}"> 
+          <button type="button" onclick="updateQuantity('{{product.id}}',-1)">-</button>
+          <input type="number" name="quantity" id="quantity-{{product.id}}" value="1">
+          <button type="button" onclick="updateQuantity('{{product.id}}',1)">+</button>
+          <button type="submit" class="btn btn-dark"><!--<a href="{% url 'addtocart' productid=product.id %}">Add To Cart </a>-->Add To Cart</button>
+
+        </form>
+        <script>
+          function updateQuantity(productid,operation)
+          {
+            var quantityInput=document.getElementById("quantity-"+productid);
+            value=quantityInput.value;
+            var quantityValue=parseInt(value);
+            var newquantityValue=quantityValue+operation;
+            quantityInput.value=newquantityValue;
+
+
+          }
+        </script>
+
+
+        </div>
+      </div>
+    </div>
+  </div>

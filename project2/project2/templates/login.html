@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body %}
+<form action="" method="post">
+{% csrf_token %}
+{{form}}
+<br>
+<input type="submit" value="Login">
+<a href="{% url "Logout" %}"><input type="button" value="Logout"></a>
+</form>
+
+{% endblock %}
